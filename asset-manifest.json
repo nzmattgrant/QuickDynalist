@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/nzmattgrant/QuickDynalist/static/css/main.ac3c0bca.chunk.css",
+    "main.js": "/nzmattgrant/QuickDynalist/static/js/main.cfb6206e.chunk.js",
+    "main.js.map": "/nzmattgrant/QuickDynalist/static/js/main.cfb6206e.chunk.js.map",
+    "runtime-main.js": "/nzmattgrant/QuickDynalist/static/js/runtime-main.541bcf7b.js",
+    "runtime-main.js.map": "/nzmattgrant/QuickDynalist/static/js/runtime-main.541bcf7b.js.map",
+    "static/css/2.528a46f5.chunk.css": "/nzmattgrant/QuickDynalist/static/css/2.528a46f5.chunk.css",
+    "static/js/2.d318452a.chunk.js": "/nzmattgrant/QuickDynalist/static/js/2.d318452a.chunk.js",
+    "static/js/2.d318452a.chunk.js.map": "/nzmattgrant/QuickDynalist/static/js/2.d318452a.chunk.js.map",
+    "static/js/3.5ff137e2.chunk.js": "/nzmattgrant/QuickDynalist/static/js/3.5ff137e2.chunk.js",
+    "static/js/3.5ff137e2.chunk.js.map": "/nzmattgrant/QuickDynalist/static/js/3.5ff137e2.chunk.js.map",
+    "index.html": "/nzmattgrant/QuickDynalist/index.html",
+    "static/css/2.528a46f5.chunk.css.map": "/nzmattgrant/QuickDynalist/static/css/2.528a46f5.chunk.css.map",
+    "static/css/main.ac3c0bca.chunk.css.map": "/nzmattgrant/QuickDynalist/static/css/main.ac3c0bca.chunk.css.map",
+    "static/js/2.d318452a.chunk.js.LICENSE.txt": "/nzmattgrant/QuickDynalist/static/js/2.d318452a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.541bcf7b.js",
+    "static/css/2.528a46f5.chunk.css",
+    "static/js/2.d318452a.chunk.js",
+    "static/css/main.ac3c0bca.chunk.css",
+    "static/js/main.cfb6206e.chunk.js"
+  ]
+}
