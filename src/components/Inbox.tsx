@@ -19,7 +19,7 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
     if (!dynalistApiKey) {
       this.props.history.push('/Setup');
     }
-    this.dynalistApi = new DynalistApi(dynalistApiKey);
+    this.dynalistApi = new DynalistApi(dynalistApiKey, 0);
   }
 
   clearKey = () => {
@@ -61,22 +61,22 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
 
   render() {
     return (
-      <div>
+      <div style={{ position: 'absolute',
+        top: '0px',
+        bottom: '0px',
+        width: '100%'}}>
         <div>
           <button style={{ margin: '10px' }} className='btn btn-danger' onClick={this.clearKey}>
             Clear dynalist key
           </button>
         </div>
         <div
-          className='container square-box d-flex justify-content-center align-items-center'
           style={{
-            width: '500px',
-            height: '200px',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            margin: '-150px 0 0 -250px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             flexDirection: 'column',
+            height: 'calc(100% - 120px)'
           }}
         >
           <div>
@@ -84,7 +84,7 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
           </div>
           <div>
             <input
-              style={{ width: '400px', marginRight: '10px' }}
+              style={{ minWidth: '300px', margin: '10px' }}
               type='text'
               value={this.state.inboxInput}
               onChange={this.handleChange}

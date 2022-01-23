@@ -11,7 +11,7 @@ export class Setup extends Component<any, { dynalistApiToken: string }> {
 
   setDynalistToken = async () => {
     const apiKey = this.state.dynalistApiToken;
-    const dynalistApi = new DynalistApi(apiKey);
+    const dynalistApi = new DynalistApi(apiKey, 0);
     try {
       const testResult = (await dynalistApi.listFiles()) as any;
       if (testResult._code && testResult._code === 'Ok') {

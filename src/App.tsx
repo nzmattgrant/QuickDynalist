@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
         <Route exact path='/' component={Inbox} />
         <Route exact path='/setup' component={Setup} />
     </Router>
