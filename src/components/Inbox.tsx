@@ -69,6 +69,12 @@ export class Inbox extends Component<any, { inboxInput: string; sendingInProgres
     });
   };
 
+  handleKeyDown = (event: any) => {
+    if (event.key === 'Enter' && !this.state.sendingInProgress && this.state.inboxInput) {
+      this.sendTextToInbox();
+    }
+  };
+
   render() {
     return (
       <div style={{ position: 'absolute', top: '0px', bottom: '0px', width: '100%' }}>
@@ -93,14 +99,15 @@ export class Inbox extends Component<any, { inboxInput: string; sendingInProgres
           <div>
             <h1>Add to inbox</h1>
           </div>
-          <div>
+          <div style={{width: '100%', maxWidth:'1000px'}}>
             <input
-              style={{ minWidth: '300px', margin: '10px' }}
+              style={{ width: 'calc(100% - 110px)', margin: '10px' }}
               type='text'
               value={this.state.inboxInput}
               onChange={this.handleChange}
+              onKeyDown={this.handleKeyDown}
             />
-            <button className='btn btn-primary' disabled={this.state.sendingInProgress || !this.state.inboxInput} onClick={this.sendTextToInbox}>
+            <button style={{width: '70px', margin: '10px'}} className='btn btn-primary' disabled={this.state.sendingInProgress || !this.state.inboxInput} onClick={this.sendTextToInbox}>
               Add
             </button>
           </div>
