@@ -3,12 +3,12 @@ import { DynalistApi } from 'dynalist-api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput: string }> {
+export class Inbox extends Component<any, { inboxInput: string; sendingInProgress: boolean }> {
   private dynalistApi?: DynalistApi;
 
   constructor(props: any) {
     super(props);
-    this.state = { dynalistApiToken: '', inboxInput: '' };
+    this.state = { sendingInProgress: false, inboxInput: '' };
   }
 
   componentDidMount() {
@@ -30,8 +30,10 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
   sendTextToInbox = async () => {
     try {
       console.log(this.state.inboxInput);
-      const result = await this.dynalistApi?.sendToInbox(this.state.inboxInput);
-      console.log('sent to inbox', result);
+      this.setState((prev) => {
+        return { ...prev, sendingInProgress: true };
+      });
+      await this.dynalistApi?.sendToInbox(this.state.inboxInput);
       toast.success('Sent to inbox', {
         position: 'bottom-right',
         autoClose: 5000,
@@ -41,7 +43,9 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
         draggable: true,
         progress: undefined,
       });
-      this.setState({ inboxInput: '' });
+      this.setState((prev) => {
+        return { ...prev, inboxInput: '' };
+      });
     } catch (e) {
       toast.error((e as Error).message, {
         position: 'bottom-right',
@@ -52,21 +56,28 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
         draggable: true,
         progress: undefined,
       });
+    } finally {
+      this.setState((prev) => {
+        return { ...prev, sendingInProgress: false };
+      });
     }
   };
 
   handleChange = (event: any) => {
-    this.setState({ inboxInput: event.target.value });
+    this.setState((prev) => {
+      return { ...prev, inboxInput: event.target.value };
+    });
   };
 
   render() {
     return (
-      <div style={{ position: 'absolute',
-        top: '0px',
-        bottom: '0px',
-        width: '100%'}}>
+      <div style={{ position: 'absolute', top: '0px', bottom: '0px', width: '100%' }}>
         <div>
-          <button style={{ margin: '10px' }} className='btn btn-danger' onClick={this.clearKey}>
+          <button
+            style={{ margin: '10px' }}
+            className='btn btn-danger'
+            onClick={this.clearKey}
+          >
             Clear dynalist key
           </button>
         </div>
@@ -76,7 +87,7 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
-            height: 'calc(100% - 120px)'
+            height: 'calc(100% - 120px)',
           }}
         >
           <div>
@@ -89,10 +100,11 @@ export class Inbox extends Component<any, { dynalistApiToken: string; inboxInput
               value={this.state.inboxInput}
               onChange={this.handleChange}
             />
-            <button className='btn btn-primary' onClick={this.sendTextToInbox}>
+            <button className='btn btn-primary' disabled={this.state.sendingInProgress || !this.state.inboxInput} onClick={this.sendTextToInbox}>
               Add
             </button>
           </div>
+          { this.state.sendingInProgress ? <div style={{color: 'green'}}>Sending to inbox</div> : <></> }
         </div>
         <ToastContainer />
       </div>
