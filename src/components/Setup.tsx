@@ -92,7 +92,7 @@ export class Setup extends Component<any, { dynalistApiToken: string; sendingInP
               {' '}
               <div>
                 <textarea
-                  style={{ width: 'calc(100% - 20px)', margin: '10px' }}
+                  style={{ width: 'calc(100% - 20px)', marginLeft: '10px', marginRight: '10px' }}
                   rows={4}
                   cols={50}
                   value={this.state.dynalistApiToken}
@@ -109,7 +109,7 @@ export class Setup extends Component<any, { dynalistApiToken: string; sendingInP
                 Enter
               </button>
               {this.state.sendingInProgress ? (
-                <div style={{ color: 'green' }}>Setting api key, please wait to be redirected...</div>
+                <div style={{ color: 'green', margin: '10px' }}>Setting api key, please wait to be redirected...</div>
               ) : (
                 <></>
               )}
