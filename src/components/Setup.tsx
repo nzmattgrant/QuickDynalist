@@ -62,7 +62,7 @@ export class Setup extends Component<any, { dynalistApiToken: string; sendingInP
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
-            height: 'calc(100% - 120px)',
+            height: '100%',
           }}
         >
           <div style={{ width: '100%', maxWidth: '1000px', margin: '10px' }}>
