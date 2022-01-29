@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { DynalistApi } from 'dynalist-api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export class Setup extends Component<any, { dynalistApiToken: string }> {
+export class Setup extends Component<any, { dynalistApiToken: string; sendingInProgress: boolean }> {
   constructor(props: any) {
     super(props);
-    this.state = { dynalistApiToken: '' };
+    this.state = { dynalistApiToken: '', sendingInProgress: false };
   }
 
   setDynalistToken = async () => {
+    this.setState((prevState) => {
+      return { ...prevState, sendingInProgress: true };
+    });
     const apiKey = this.state.dynalistApiToken;
     const dynalistApi = new DynalistApi(apiKey, 0);
     try {
@@ -33,6 +36,10 @@ export class Setup extends Component<any, { dynalistApiToken: string }> {
         draggable: true,
         progress: undefined,
       });
+    } finally {
+      this.setState((prevState) => {
+        return { ...prevState, sendingInProgress: false };
+      });
     }
   };
 
@@ -40,43 +47,74 @@ export class Setup extends Component<any, { dynalistApiToken: string }> {
     this.setState({ dynalistApiToken: event.target.value });
   };
 
+  handleKeyDown = (event: any) => {
+    if (event.key === 'Enter' && this.state.dynalistApiToken) {
+      this.setDynalistToken();
+    }
+  };
+
   render() {
     return (
-      <div
-        className='container square-box d-flex justify-content-center'
-        style={{
-          width: '500px',
-          height: '200px',
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          margin: '-150px 0 0 -250px',
-          flexDirection: 'column',
-        }}
-      >
-        <div>
-          <h1>Enter Dynalist API token</h1>
-        </div>
-        <div>
-          <p>
-            Enter your api token found{' '}
-            <a target='_blank' href='https://dynalist.io/developer'>
-              here
-            </a>
-          </p>
-          <p>this key will only be held locally on your browser and will not be sent to any server</p>
-        </div>
-        <div>
-          {' '}
-          <input
-            type='text'
-            style={{ width: '400px', marginRight: '10px' }}
-            value={this.state.dynalistApiToken}
-            onChange={this.handleChange}
-          />
-          <button className='btn btn-primary' onClick={this.setDynalistToken}>
-            Enter
-          </button>
+      <div style={{ position: 'absolute', top: '0px', bottom: '0px', width: '100%' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            height: 'calc(100% - 120px)',
+          }}
+        >
+          <div style={{ width: '100%', maxWidth: '1000px', margin: '10px' }}>
+            <div style={{ margin: '10px' }}>
+              <div>
+                <h1>Enter Dynalist API Token</h1>
+              </div>
+              <div>
+                <p>
+                  This is a tool to quickly add items to your dynalist{' '}
+                  <a href='https://help.dynalist.io/article/119-set-an-inbox-location'>inbox</a>. To set this up you
+                  will need to add your dynalist api token to the site (this will be saved only to localstorage on your
+                  browser). If you (rightly) don't trust this site and would rather host this tool yourself then you can
+                  fork the code at <a href='https://github.com/nzmattgrant/QuickDynalist'>github</a> and host it
+                  yourself (for free) at <a href='https://pages.github.com/'>github pages</a>
+                </p>
+                <p>
+                  Enter your api token found{' '}
+                  <a target='_blank' href='https://dynalist.io/developer'>
+                    here
+                  </a>
+                </p>
+                <p>This key will only be held locally on your browser and will not be sent to any server</p>
+              </div>
+            </div>
+            <div>
+              {' '}
+              <div>
+                <textarea
+                  style={{ width: 'calc(100% - 20px)', margin: '10px' }}
+                  rows={4}
+                  cols={50}
+                  value={this.state.dynalistApiToken}
+                  onChange={this.handleChange}
+                  onKeyDown={this.handleKeyDown}
+                />
+              </div>
+              <button
+                style={{ margin: '10px' }}
+                disabled={!this.state.dynalistApiToken}
+                className='btn btn-primary'
+                onClick={this.setDynalistToken}
+              >
+                Enter
+              </button>
+              {this.state.sendingInProgress ? (
+                <div style={{ color: 'green' }}>Setting api key, please wait to be redirected...</div>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
         </div>
         <ToastContainer />
       </div>

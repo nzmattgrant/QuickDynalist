@@ -111,7 +111,7 @@ export class Inbox extends Component<any, { inboxInput: string; sendingInProgres
               Add
             </button>
           </div>
-          { this.state.sendingInProgress ? <div style={{color: 'green'}}>Sending to inbox</div> : <></> }
+          { this.state.sendingInProgress ? <div style={{color: 'green'}}>Sending to inbox...</div> : <></> }
         </div>
         <ToastContainer />
       </div>
