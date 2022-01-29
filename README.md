@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Getting Started with Quick Add Dynalist
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This was created to give the ability to quickly add things to the a dynalist inbox. This site is already hosted (on github pages) at 
+[https://quick-add-dynalist.com/](https://quick-add-dynalist.com/). Feel free to fork the code and set up your own version on [https://pages.github.com/](github pages). To do this you will also need to update the homepage setting in the package.json file to be your github pages hosting location (note this is the github.io url not the code repository url).
+
+The idea is that a shortcut could be saved on mobile phones or used in a browser so that you don't have to find the right document to add your quick note to when opening dynalist. It is very simple for now and requires giving up your developer api key which you aren't supposed to do (though this is never saved anywhere as you will be able to see from the code).
 
 ## Available Scripts
 
@@ -38,9 +41,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
