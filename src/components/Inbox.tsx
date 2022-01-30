@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { DynalistApi } from 'dynalist-api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 export class Inbox extends Component<any, { inboxInput: string; sendingInProgress: boolean }> {
   private dynalistApi?: DynalistApi;
@@ -79,11 +80,7 @@ export class Inbox extends Component<any, { inboxInput: string; sendingInProgres
     return (
       <div style={{ position: 'absolute', top: '0px', bottom: '0px', width: '100%' }}>
         <div>
-          <button
-            style={{ margin: '10px' }}
-            className='btn btn-danger'
-            onClick={this.clearKey}
-          >
+          <button style={{ margin: '10px' }} className='btn btn-danger' onClick={this.clearKey}>
             Clear dynalist key
           </button>
         </div>
@@ -99,7 +96,7 @@ export class Inbox extends Component<any, { inboxInput: string; sendingInProgres
           <div>
             <h1>Add to inbox</h1>
           </div>
-          <div style={{width: '100%', maxWidth:'1000px'}}>
+          <div style={{ width: '100%', maxWidth: '1000px' }}>
             <input
               style={{ width: 'calc(100% - 110px)', margin: '10px' }}
               type='text'
@@ -107,11 +104,19 @@ export class Inbox extends Component<any, { inboxInput: string; sendingInProgres
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
             />
-            <button style={{width: '70px', margin: '10px'}} className='btn btn-primary' disabled={this.state.sendingInProgress || !this.state.inboxInput} onClick={this.sendTextToInbox}>
+            <button
+              style={{ width: '70px', margin: '10px' }}
+              className='btn btn-primary'
+              disabled={this.state.sendingInProgress || !this.state.inboxInput}
+              onClick={this.sendTextToInbox}
+            >
               Add
             </button>
           </div>
-          { this.state.sendingInProgress ? <div style={{color: 'green'}}>Sending to inbox...</div> : <></> }
+          <div style={{ marginLeft: '10px' }}>
+            <Link to='/use-as-app'>Use as App</Link>
+          </div>
+          {this.state.sendingInProgress ? <div style={{ color: 'green' }}>Sending to inbox...</div> : <></>}
         </div>
         <ToastContainer />
       </div>

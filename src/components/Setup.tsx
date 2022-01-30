@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { DynalistApi } from 'dynalist-api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 export class Setup extends Component<any, { dynalistApiToken: string; sendingInProgress: boolean }> {
   constructor(props: any) {
@@ -108,6 +109,9 @@ export class Setup extends Component<any, { dynalistApiToken: string; sendingInP
               >
                 Enter
               </button>
+              <div style={{ marginLeft: '10px' }}>
+                <Link to='/use-as-app'>Use as App</Link>
+              </div>
               {this.state.sendingInProgress ? (
                 <div style={{ color: 'green', margin: '10px' }}>Setting api key, please wait to be redirected...</div>
               ) : (
