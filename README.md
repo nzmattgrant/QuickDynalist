@@ -1,7 +1,7 @@
 # Getting Started with Quick Add Dynalist
 
 This was created to give the ability to quickly add things to the a dynalist inbox. This site is already hosted (on github pages) at 
-[https://quick-add-dynalist.com/](https://quick-add-dynalist.com/). Feel free to fork the code and set up your own version on [github pages](https://pages.github.com/). To do this you will also need to update the homepage setting in the package.json file to be your github pages hosting location (note this is the github.io url not the code repository url).
+[https://nzmattgrant.github.io/QuickDynalist/](https://nzmattgrant.github.io/QuickDynalist/). Feel free to fork the code and set up your own version on [github pages](https://pages.github.com/). To do this you will also need to update the homepage setting in the package.json file to be your github pages hosting location (note this is the github.io url not the code repository url).
 
 The idea is that a shortcut could be saved on mobile phones or used in a browser so that you don't have to find the right document to add your quick note to when opening dynalist. It is very simple for now and requires giving up your developer api key which you aren't supposed to do (though this is never saved anywhere as you will be able to see from the code).
 
